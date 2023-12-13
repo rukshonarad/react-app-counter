@@ -2,19 +2,35 @@ import React from "react";
 import "./App.css";
 class Button extends React.Component {
     render() {
-        return <button>{this.props.children}</button>;
+        return (
+            <button onClick={this.props.onClick}>{this.props.children}</button>
+        );
     }
 }
 
 class App extends React.Component {
-    handleOnClick = () => {
-        console.log("Hello");
+    state = {
+        counter: 0,
+        counterBy2: 0
     };
+    constructor() {
+        super();
+        this.state = {
+            counter: 0
+        };
+    }
+    handleCouter = () => {
+        this.setState({
+            counter: this.state.counter + 1
+        });
+    };
+
     render() {
         return (
             <div>
-                <Button>Click Me</Button>
-                <span>Counter:0</span>
+                <Button onClick={this.handleCouter}>
+                    Click Me {this.state.counter}
+                </Button>
             </div>
         );
     }
